@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -151,6 +151,8 @@ body{
 </head>
 <body>
 
+    <audio id="jumpSound">  <source src="audio/salto.mp3" type="audio/mpeg"> </audio>
+
     <div class="contenedor">
 
         <div class="suelo"></div>
@@ -161,8 +163,6 @@ body{
 
     </div>
 
-    <div class="game-over">GAME OVER</div>
-    
 
 <script>
 
@@ -181,6 +181,7 @@ function Init() {
     time = new Date();
     Start();
     Loop();
+    
 }
 
 function Loop() {
@@ -189,6 +190,8 @@ function Loop() {
     Update();
     requestAnimationFrame(Loop);
 }
+
+
 
 //****** GAME LOGIC ********//
 
@@ -228,6 +231,8 @@ var textoScore;
 var suelo;
 var gameOver;
 
+
+
 function Start() {
     gameOver = document.querySelector(".game-over");
     suelo = document.querySelector(".suelo");
@@ -235,6 +240,10 @@ function Start() {
     textoScore = document.querySelector(".score");
     dino = document.querySelector(".dino");
     document.addEventListener("keydown", HandleKeyDown);
+
+    document.addEventListener("click", function() {  Saltar(); });
+    
+
 }
 
 function Update() {
@@ -252,16 +261,25 @@ function Update() {
 }
 
 function HandleKeyDown(ev){
-    if(ev.keyCode == 32){
+    if(ev.keyCode == 32 ){
         Saltar();
     }
 }
+
 
 function Saltar(){
     if(dinoPosY === sueloY){
         saltando = true;
         velY = impulso;
         dino.classList.remove("dino-corriendo");
+
+         // Reproduce el sonido de salto
+         var jumpSound = document.getElementById("jumpSound");
+        if (jumpSound) {
+            jumpSound.currentTime = 0; // Reinicia el sonido si ya estaba reproduciéndose
+            jumpSound.play();
+        }
+
     }
 }
 
@@ -361,21 +379,36 @@ function MoverNubes() {
     }
 }
 
+
+// Definir un array de clases de tiempo
+const clasesTiempo = ["mediodia", "tarde", "noche"];
+
 function GanarPuntos() {
     score++;
     textoScore.innerText = score;
-    if(score == 5){
-        gameVel = 1.5;
-        contenedor.classList.add("mediodia");
-    }else if(score == 10) {
-        gameVel = 2;
-        contenedor.classList.add("tarde");
-    } else if(score == 20) {
-        gameVel = 3;
-        contenedor.classList.add("noche");
+
+    if (score % 10 === 0) {
+        gameVel += 0.1;
+        cambiarClaseTiempo();
     }
-    suelo.style.animationDuration = (3/gameVel)+"s";
+
+    suelo.style.animationDuration = (3 / gameVel) + "s";
 }
+
+function aumentarVelocidad() {
+    gameVel += 0.1;
+}
+
+function cambiarClaseTiempo() {
+    // Calcular el índice actual en el array de clases de tiempo
+    const indice = Math.floor((gameVel - 1.1) * 10);
+
+    // Obtener la clase de tiempo correspondiente y aplicarla al contenedor
+    const claseTiempo = clasesTiempo[indice % clasesTiempo.length];
+    contenedor.className = claseTiempo;
+}
+
+
 
 function GameOver() {
     Estrellarse();
