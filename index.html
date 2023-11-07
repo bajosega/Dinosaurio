@@ -268,21 +268,23 @@ function HandleKeyDown(ev){
 }
 
 
-function Saltar(){
-    if(dinoPosY === sueloY){
+function Saltar() {
+    if (parado) {
+        ReiniciarJuego();
+    } else if (dinoPosY === sueloY) {
         saltando = true;
         velY = impulso;
         dino.classList.remove("dino-corriendo");
 
-         // Reproduce el sonido de salto
-         var jumpSound = document.getElementById("jumpSound");
+        // Reproduce el sonido de salto
+        var jumpSound = document.getElementById("jumpSound");
         if (jumpSound) {
-            jumpSound.currentTime = 0; // Reinicia el sonido si ya estaba reproduciéndose
+            jumpSound.currentTime = 0;
             jumpSound.play();
         }
-
     }
 }
+
 
 function MoverDinosaurio() {
     dinoPosY += velY * deltaTime;
@@ -440,6 +442,43 @@ function IsCollision(a, b, paddingTop, paddingRight, paddingBottom, paddingLeft)
         (aRect.left + paddingLeft > (bRect.left + bRect.width))
     );
 }
+
+
+function ReiniciarJuego() {
+    // Restablece todas las variables de juego
+    score = 0;
+    dinoPosY = sueloY;
+    velY = 0;
+    sueloX = 0;
+    parado = false;
+    saltando = false;
+
+    // Elimina el mensaje de "Game Over"
+    gameOver.style.display = "none";
+
+    // Elimina todos los obstáculos y nubes existentes
+    obstaculos.forEach(function(obstaculo) {
+        obstaculo.parentNode.removeChild(obstaculo);
+    });
+    obstaculos = [];
+
+    nubes.forEach(function(nube) {
+        nube.parentNode.removeChild(nube);
+    });
+    nubes = [];
+
+    // Reinicia la velocidad del juego
+    gameVel = 1;
+    suelo.style.animationDuration = "3s"; // Ajusta la duración de la animación del suelo
+
+    // Reinicia el texto del marcador
+    textoScore.innerText = "0";
+
+    // Llama a la función Start para configurar el juego nuevamente
+    Start();
+}
+
+
 
 
 </script>
