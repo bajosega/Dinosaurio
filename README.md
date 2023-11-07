@@ -43,7 +43,10 @@ Si deseas contribuir a este fork o realizar mejoras, ¡siéntete libre de hacerl
 
 ## Licencia
 
-Este juego es de código abierto y se distribuye bajo la Licencia MIT. Puedes utilizar, modificar y distribuir el código como desees.
+Este proyecto se encuentra bajo la Licencia Creative Commons Atribución-NoComercial (CC BY-NC). Esto significa que puedes copiar, modificar y distribuir el trabajo, siempre y cuando no lo hagas con fines comerciales. Debes otorgar el crédito correspondiente al autor original.
 
-¡Disfruta del juego y compite para obtener la puntuación más alta!
+Para obtener más detalles sobre los términos y condiciones de la licencia, consulta el archivo [LICENSE](LICENSE) en este repositorio.
+
+Si deseas utilizar este proyecto con fines comerciales, comunícate con el autor para obtener el permiso necesario.
+
 
