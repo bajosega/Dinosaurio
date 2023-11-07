@@ -8,6 +8,16 @@ El juego se ha desarrollado utilizando tecnologías web estándar, incluyendo HT
 
 ## Cómo Jugar
 
+El objetivo del juego es guiar al dinosaurio a través de un mundo lleno de obstáculos y acumular la mayor cantidad de puntos posible.
+
+- **Saltar Obstáculos:** Utiliza la barra espaciadora o haz clic con el botón izquierdo del ratón para hacer que el dinosaurio salte y evite los obstáculos que se presentan en su camino.
+
+- **Acumular Puntos:** A medida que avanzas y saltas obstáculos con éxito, tu puntuación aumenta. Cuantos más obstáculos saltes, mayor será tu puntaje.
+
+- **Dificultad Gradual:** El juego se vuelve más desafiante a medida que acumulas puntos. La velocidad de los obstáculos aumenta gradualmente, lo que requiere reflejos más rápidos y precisos.
+
+- **Reinicio del Juego:** Después de perder, puedes reiniciar el juego simplemente haciendo clic nuevamente o saltando.
+
 
 
 ## Características Adicionales (Contribuciones)
@@ -20,6 +30,7 @@ El juego se ha desarrollado utilizando tecnologías web estándar, incluyendo HT
 
 - **Reinicio del Juego:** Después de perder, el juego se puede reiniciar simplemente haciendo clic nuevamente o saltando. (Contribución de [bajosega])
 
+¡Demuestra tus habilidades, salta obstáculos y compite por obtener la puntuación más alta!
 
 
 ## Contribuciones
