@@ -26,21 +26,24 @@
     margin: 0;
 }
 
-body{
-    height: 100vh;
-    background: #584040;
-    display: flex;
-    align-items: center;
-}
+
+
+body {
+            height: 100%;
+            background: #584040;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0; /* Asegúrate de que no haya márgenes predeterminados */
+        }
 
 .contenedor {
-    width: 920px;
+    width: 90%; /* Usa porcentajes para adaptar el ancho al tamaño de la pantalla */
+    max-width: 900px; /* Establece un ancho máximo para evitar que crezca demasiado en pantallas grandes */
     height: 280px;
-   
-    margin: 0 auto;
     
+    margin: 10% auto;
     position: relative;
-
     background: linear-gradient(#b7d6c7, transparent) #ffe2d1;/*linear-gradient(#90ebff, white);*/
     transition: background-color 1s linear;
     overflow: hidden;
@@ -165,7 +168,7 @@ body{
     .qr {
             display: none;
             position: fixed;
-            top: 100px;
+            top: 110px;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
@@ -177,7 +180,15 @@ body{
         }
 
         .qr img {
-            height: 100px;
+            height: 5vw; /* Usa unidades relativas como vw (viewport width) para adaptar al tamaño de la pantalla */
+        }
+
+        @media only screen and (max-width: 600px) {
+            /* Estilos específicos para pantallas pequeñas */
+            .contenedor {
+                width: 100%; /* Ocupa el 100% del ancho en pantallas pequeñas */
+            }
+            /* ... (otros estilos específicos) ... */
         }
 
 
