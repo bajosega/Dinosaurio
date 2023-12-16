@@ -566,7 +566,10 @@ function ReiniciarJuego() {
             document.querySelector('.qr').style.display = 'block';
         }
 
-        
+              // Verificar si es un dispositivo móvil y forzar la orientación landscape
+              if (window.innerWidth < 600 && window.innerHeight > window.innerWidth) {
+            alert("Gira tu dispositivo para una mejor experiencia.");
+        }
 
 
 </script>
