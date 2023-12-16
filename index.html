@@ -321,9 +321,15 @@ function TocarSuelo() {
 }
 
 function MoverSuelo() {
+    if (!suelo) {
+        console.error("Elemento suelo no encontrado.");
+        return;
+    }
     sueloX += CalcularDesplazamiento();
     suelo.style.left = -(sueloX % contenedor.clientWidth) + "px";
 }
+
+
 
 function CalcularDesplazamiento() {
     return velEscenario * deltaTime * gameVel;
@@ -404,14 +410,17 @@ const clasesTiempo = ["mediodia", "tarde", "noche"];
 
 function GanarPuntos() {
     score++;
+    console.log("Puntos: " + score);
     textoScore.innerText = score;
 
     if (score % 10 === 0) {
+        console.log("Aumentando velocidad");
         gameVel += 0.1;
         cambiarClaseTiempo();
+        suelo.style.animationDuration = (3 / gameVel) + "s";
     }
 
-    suelo.style.animationDuration = (3 / gameVel) + "s";
+    
 }
 
 function aumentarVelocidad() {
@@ -419,17 +428,32 @@ function aumentarVelocidad() {
 }
 
 function cambiarClaseTiempo() {
+    console.log("Cambiando clase de tiempo");
+
     // Calcular el índice actual en el array de clases de tiempo
     const indice = Math.floor((gameVel - 1.1) * 10);
 
-    // Obtener la clase de tiempo correspondiente y aplicarla al contenedor
+    // Obtener la clase de tiempo correspondiente
     const claseTiempo = clasesTiempo[indice % clasesTiempo.length];
-    contenedor.className = claseTiempo;
+
+    // Aplicar la clase de tiempo solo si ha cambiado
+    if (contenedor.classList.contains(claseTiempo)) {
+        console.log("La clase de tiempo no ha cambiado:", claseTiempo);
+        return;
+    }
+
+    // Eliminar todas las clases de tiempo existentes y aplicar la nueva clase
+    contenedor.classList.remove(...clasesTiempo);
+    contenedor.classList.add(claseTiempo);
+
+    console.log("Nueva clase de tiempo aplicada:", claseTiempo);
 }
 
 
 
+
 function GameOver() {
+    console.log("Fin del juego");
     Estrellarse();
     gameOver.style.display = "block";
 }
