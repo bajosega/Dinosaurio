@@ -162,13 +162,23 @@ body{
     }
 
 
-    #qr-code {
-      
-       height: 100px;
-       position: absolute;
-       top: 5px;
-       text-align: center;
-    }
+    .qr {
+            display: none;
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #d48871;
+            font-family: Verdana;
+            font-size: 30px;
+            font-weight: bold;
+            z-index: 1000; /* Ajusta el índice z para asegurarte de que esté encima de otros elementos */
+        }
+
+        .qr img {
+            height: 100px;
+        }
 
 
     </style>
@@ -193,7 +203,12 @@ body{
         
             <div class="game-over">GAME OVER</div>
     
-            <img id="qr-code" src="img/qr.png" alt="Código QR para abrir la página desde Android">
+            
+            <div class="  qr" > Jugalo en Android!  
+              <br>  <img  src="img/qr.png" alt="Código QR para abrir la página desde Android">
+            </div>
+      
+           
         
 
 <script>
@@ -533,6 +548,11 @@ function ReiniciarJuego() {
 }
 
 
+
+        // Mostrar el título solo si el ancho de la ventana es mayor que 600px
+        if (window.innerWidth > 600) {
+            document.querySelector('.qr').style.display = 'block';
+        }
 
 
 </script>
